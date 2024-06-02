@@ -1,7 +1,10 @@
+// src/auth-pages/Login.tsx
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../query/mutations';
-import { TextField, Button, Container, Typography, Box } from '@mui/material';
+import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import './Login.css'; // Make sure to import your CSS file
 
 interface LoginResponse {
   login: {
@@ -12,7 +15,7 @@ interface LoginResponse {
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [login, { data, loading, error }] = useMutation<LoginResponse>(LOGIN);
+  const [login, { loading, error }] = useMutation<LoginResponse>(LOGIN);
 
   const handleLogin = async () => {
     try {
@@ -28,50 +31,44 @@ const Login: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="sm" align="center">
-      <Box width="100%" 
-          maxWidth={400} 
-          p={4} 
-          boxShadow="0px 0px 10px rgba(0, 0, 0, 0.1)"
-          borderRadius={2}
-          border="1px solid #ccc"
-          sx={{ 
-            background: 'linear-gradient(to bottom right, #f0f0f0, #ffffff)',
-            boxShadow: '10px 10px 20px #d9d9d9, -10px -10px 20px #ffffff'
-          }}>
-        <Typography align="center" variant="h4" component="h1" gutterBottom>
-          Login
-        </Typography>
-        <TextField
-          label="Email"
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextField
-          label="Password"
-          type="password"
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button
-          align="center"
-          variant="contained"
-          color="primary"
-          onClick={handleLogin}
-          disabled={loading}
-          sx={{ mt: 3 }}
-        >
-          {loading ? 'Logging in...' : 'Login'}
-        </Button>
-        {error && <Typography color="error">{error.message}</Typography>}
-      </Box>
-    </Container>
+    <div className="animated-background">
+      <Container fluid className="d-flex align-items-center justify-content-center vh-100">
+        <Row className="w-100">
+          <Col md={{ span: 4, offset: 4 }}>
+            <div className="border p-4 shadow rounded bg-white">
+              <h2 className="text-center mb-4">Login</h2>
+              <Form>
+                <Form.Group controlId="formEmail" className="mb-3">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group controlId="formPassword" className="mb-3">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </Form.Group>
+                <Button variant="primary" type="button" onClick={handleLogin} disabled={loading} className="w-100">
+                  {loading ? 'Logging in...' : 'Login'}
+                </Button>
+                {error && <Alert variant="danger" className="mt-3">{error.message}</Alert>}
+              </Form>
+              <div className="text-center mt-3">
+                <Link to="/register">Don't have an account? Register</Link>
+              </div>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 
