@@ -1,14 +1,24 @@
+// src/App.tsx
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from '../src/auth-pages/Login';
-import { Container } from '@mui/material';
+import { BrowserRouter as Router, Route, Routes, Navigate, Outlet } from 'react-router-dom';
+import Login from './auth-pages/Login';
+import Register from './auth-pages/Register';
+import Home from './main-pages/Home';
+import { Container } from 'react-bootstrap';
+
+const PrivateRoute: React.FC = () => {
+  return localStorage.getItem('token') ? <Outlet /> : <Navigate to="/login" />;
+};
 
 function App() {
   return (
-      <Container>
+      <Container fluid className="p-0">
         <Routes>
           <Route path="/login" element={<Login />} />
-          {/* Add more routes as needed */}
+          <Route path="/register" element={<Register />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/home" element={<Home />} />
+          </Route>
         </Routes>
       </Container>
   );

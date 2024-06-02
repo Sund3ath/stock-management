@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { ApolloProvider } from '@apollo/client';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import { BrowserRouter as Router } from 'react-router-dom';
