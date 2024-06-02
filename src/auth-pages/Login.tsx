@@ -17,7 +17,7 @@ const Login: React.FC = () => {
   const handleLogin = async () => {
     try {
       const result = await login({ variables: { email, password } });
-      const token = result.data?.login.token;
+      const token = result.data?.login.accessToken;
       if (token) {
         localStorage.setItem('token', token);
         alert('Login successful!');
