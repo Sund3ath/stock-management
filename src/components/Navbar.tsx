@@ -1,10 +1,13 @@
 // src/components/Navbar.tsx
-import React from 'react';
-import { Navbar, Nav, Button, Container } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { AppBar, Toolbar, IconButton, Typography, Button } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import Sidebar from './Sidebar';
 
 const NavigationBar: React.FC = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
   const { user, logout } = useAuth();
 
@@ -13,22 +16,30 @@ const NavigationBar: React.FC = () => {
     navigate('/login');
   };
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
-        <Navbar.Brand href="/home">E&K Stock Genie</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/home">Home</Nav.Link>
-          </Nav>
-          <Navbar.Text className="me-3">
-            Signed in as: <a href="#login">{user ? user.email : 'Guest'}</a>
-          </Navbar.Text>
-          <Button onClick={handleLogout} variant="outline-danger">Logout</Button>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleSidebar}>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" style={{ flexGrow: 1 }}>
+            E&K Stock Genie
+          </Typography>
+          <Typography variant="h6" style={{ marginRight: '1rem' }}>
+            Signed in as: {user ? user.email : 'Guest'}
+          </Typography>
+          <Button color="inherit" onClick={handleLogout}>
+            Logout
+          </Button>
+        </Toolbar>
+      </AppBar>
+      <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+    </>
   );
 };
 

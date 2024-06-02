@@ -1,12 +1,11 @@
-// src/contexts/AuthContext.tsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useLazyQuery } from '@apollo/client';
-import { GET_USER } from '../query/queries';
+import { useMutation, useLazyQuery } from '@apollo/client';
+import { LOGIN, GET_USER } from '../query/queries';
 
 interface AuthContextType {
   user: { id: number; email: string } | null;
   token: string | null;
-  login: (token: string) => void;
+  login: (email: string, password: string) => Promise<void>;
   logout: () => void;
 }
 
@@ -23,19 +22,16 @@ export const useAuth = () => {
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<{ id: number; email: string } | null>(null);
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
-  const [getUser, { data }] = useLazyQuery(GET_USER, {
-    context: {
-      headers: {
-        Authorization: token ? `Bearer ${token}` : '',
-      },
-    },
-  });
+  const [userId, setUserId] = useState<number | null>(localStorage.getItem('userId') ? parseInt(localStorage.getItem('userId') as string) : null);
+  const [getUser, { data }] = useLazyQuery(GET_USER);
+
+  const [loginMutation] = useMutation(LOGIN);
 
   useEffect(() => {
-    if (token) {
-      getUser();
+    if (token && userId !== null) {
+      getUser({ variables: { userId } });
     }
-  }, [token, getUser]);
+  }, [token, userId, getUser]);
 
   useEffect(() => {
     if (data && data.user) {
@@ -43,14 +39,27 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
   }, [data]);
 
-  const login = (newToken: string) => {
-    localStorage.setItem('token', newToken);
-    setToken(newToken);
-    getUser();
+  const login = async (email: string, password: string) => {
+    try {
+      const { data } = await loginMutation({ variables: { email, password } });
+      const token = data?.login.accessToken;
+      const userId = data?.login.id;
+      if (token && userId !== undefined) {
+        localStorage.setItem('token', token);
+        localStorage.setItem('userId', userId.toString());
+        setToken(token);
+        setUserId(userId);
+        getUser({ variables: { userId } });
+      }
+    } catch (error) {
+      console.error('Login error', error);
+      throw error;
+    }
   };
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('userId');
     setToken(null);
     setUser(null);
   };
