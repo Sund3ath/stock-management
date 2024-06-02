@@ -5,6 +5,7 @@ import Login from './auth-pages/Login';
 import Register from './auth-pages/Register';
 import Home from './main-pages/Home';
 import NavigationBar from './components/Navbar';
+import Footer from './components/Footer';
 import { useAuth } from './context/AuthContext';
 import { Container } from 'react-bootstrap';
 
@@ -13,7 +14,7 @@ const PrivateRoute: React.FC = () => {
   return token ? <Outlet /> : <Navigate to="/login" />;
 };
 
-function App() {
+const App: React.FC = () => {
   const { token } = useAuth();
 
   return (
@@ -28,8 +29,9 @@ function App() {
           </Route>
         </Routes>
       </Container>
+      {token && <Footer />}
     </Router>
   );
-}
+};
 
 export default App;

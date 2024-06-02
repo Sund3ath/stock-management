@@ -1,13 +1,22 @@
 // src/components/Navbar.tsx
 import React, { useState } from 'react';
-import { AppBar, Toolbar, IconButton, Typography, Button } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Typography, Avatar, Menu, MenuItem, Divider, ListItemIcon } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Sidebar from './Sidebar';
+import { colors } from '../theme/color';
+import { styled } from '@mui/system';
+
+const StyledAppBar = styled(AppBar)({
+  backgroundColor: colors.primary,
+});
 
 const NavigationBar: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
   const { user, logout } = useAuth();
 
@@ -20,9 +29,17 @@ const NavigationBar: React.FC = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <>
-      <AppBar position="static">
+      <StyledAppBar position="static">
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleSidebar}>
             <MenuIcon />
@@ -30,14 +47,29 @@ const NavigationBar: React.FC = () => {
           <Typography variant="h6" style={{ flexGrow: 1 }}>
             E&K Stock Genie
           </Typography>
-          <Typography variant="h6" style={{ marginRight: '1rem' }}>
-            Signed in as: {user ? user.email : 'Guest'}
-          </Typography>
-          <Button color="inherit" onClick={handleLogout}>
-            Logout
-          </Button>
+          <IconButton color="inherit" onClick={handleMenuOpen}>
+            <Avatar alt="Profile Picture" src="/path/to/profile-picture.jpg" />
+          </IconButton>
+          <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
+            <MenuItem>
+              <Typography variant="subtitle1">{user?.email}</Typography>
+            </MenuItem>
+            <Divider />
+            <MenuItem onClick={() => { handleMenuClose(); navigate('/settings'); }}>
+              <ListItemIcon>
+                <Settings fontSize="small" />
+              </ListItemIcon>
+              Settings
+            </MenuItem>
+            <MenuItem onClick={handleLogout}>
+              <ListItemIcon>
+                <Logout fontSize="small" style={{ color: 'red' }} />
+              </ListItemIcon>
+              <Typography style={{ color: 'red' }}>Logout</Typography>
+            </MenuItem>
+          </Menu>
         </Toolbar>
-      </AppBar>
+      </StyledAppBar>
       <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
     </>
   );

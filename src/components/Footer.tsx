@@ -1,18 +1,26 @@
 // src/components/Footer.tsx
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Box, Typography } from '@mui/material';
+import { styled } from '@mui/system';
+import { colors } from '../theme/color';
+
+const FooterContainer = styled(Box)({
+  backgroundColor: colors.primary,
+  color: colors.text,
+  padding: '10px 0',
+  textAlign: 'center',
+  position: 'fixed',
+  bottom: 0,
+  width: '100%',
+});
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-light py-3">
-      <Container>
-        <Row>
-          <Col className="text-center">
-            <p className="mb-0">© 2024 K&E Stock Genie. All rights reserved.</p>
-          </Col>
-        </Row>
-      </Container>
-    </footer>
+    <FooterContainer>
+      <Typography variant="body2">
+        © 2023 E&K Stock Genie. All rights reserved.
+      </Typography>
+    </FooterContainer>
   );
 };
 
