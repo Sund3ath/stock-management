@@ -1,0 +1,26 @@
+{
+    "login": {
+      "title": "Giriş",
+      "email": "E-posta",
+      "password": "Şifre",
+      "loginButton": "Giriş Yap",
+      "registerLink": "Hesabınız yok mu? Kayıt Ol"
+    },
+    "register": {
+      "title": "Kayıt Ol",
+      "email": "E-posta",
+      "password": "Şifre",
+      "confirmPassword": "Şifreyi Onayla",
+      "registerButton": "Kayıt Ol",
+      "loginLink": "Zaten hesabınız var mı? Giriş Yap"
+    },
+    "navbar": {
+      "home": "Ana Sayfa",
+      "signedInAs": "Olarak giriş yapıldı",
+      "settings": "Ayarlar",
+      "logout": "Çıkış Yap"
+    },
+    "footer": {
+      "text": "© 2023 E&K Stock Genie. Tüm hakları saklıdır."
+    }
+  }

@@ -1,0 +1,26 @@
+{
+    "login": {
+      "title": "Anmeldung",
+      "email": "Email",
+      "password": "Passwort",
+      "loginButton": "Anmelden",
+      "registerLink": "Kein Konto? Registrieren"
+    },
+    "register": {
+      "title": "Registrieren",
+      "email": "Email",
+      "password": "Passwort",
+      "confirmPassword": "Passwort bestätigen",
+      "registerButton": "Registrieren",
+      "loginLink": "Haben Sie bereits ein Konto? Anmelden"
+    },
+    "navbar": {
+      "home": "Startseite",
+      "signedInAs": "Angemeldet als",
+      "settings": "Einstellungen",
+      "logout": "Abmelden"
+    },
+    "footer": {
+      "text": "© 2023 E&K Stock Genie. Alle Rechte vorbehalten."
+    }
+  }

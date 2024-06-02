@@ -15,11 +15,9 @@ const PrivateRoute: React.FC = () => {
 };
 
 const App: React.FC = () => {
-  const { token } = useAuth();
-
   return (
     <Router>
-      {token && <NavigationBar />}
+      <NavigationBar />
       <Container fluid className="p-0">
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -29,7 +27,7 @@ const App: React.FC = () => {
           </Route>
         </Routes>
       </Container>
-      {token && <Footer />}
+      <Footer />
     </Router>
   );
 };
