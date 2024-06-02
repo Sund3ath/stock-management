@@ -1,30 +1,42 @@
-/* src/index.css */
 html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-.animated-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(270deg, #ff7e5f, #feb47b);
-  background-size: 400% 400%;
-  animation: gradientAnimation 15s ease infinite;
-  z-index: -1; /* Ensure the background is behind everything */
+.login-container {
+  position: relative;
+  z-index: 1; /* Ensure the login form is above the background */
 }
 
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.login-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-card h2 {
+  margin-bottom: 1.5rem;
+}
+
+.login-card .form-control {
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.login-card .btn-primary {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+
+.login-card .alert {
+  margin-top: 1rem;
+}
+
+.login-card .register-link {
+  margin-top: 1rem;
+  display: block;
+  text-align: center;
 }
