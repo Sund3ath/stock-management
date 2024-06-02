@@ -1,9 +1,10 @@
 // src/auth-pages/Login.tsx
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { LOGIN } from '../query/mutations';
+import { LOGIN } from '../query/queries';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import '../index.css'; // Ensure this is imported to apply global styles
 
 interface LoginResponse {
@@ -16,14 +17,17 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [login, { loading, error }] = useMutation<LoginResponse>(LOGIN);
+  const navigate = useNavigate();
+  const { login: authLogin } = useAuth();
 
   const handleLogin = async () => {
     try {
       const result = await login({ variables: { email, password } });
       const token = result.data?.login.accessToken;
       if (token) {
-        localStorage.setItem('token', token);
+        authLogin(token);
         alert('Login successful!');
+        navigate('/home'); // Redirect to home page after successful login
       }
     } catch (err) {
       console.error('Login error', err);
