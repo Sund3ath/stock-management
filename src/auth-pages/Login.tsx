@@ -5,7 +5,7 @@ import { LOGIN } from '../query/queries';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import '../index.css'; // Ensure this is imported to apply global styles
+import '../index.css'; // Ensure this is imported to apply the background
 
 interface LoginResponse {
   login: {
@@ -35,7 +35,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="animated-background">
+    <div className="background">
       <Container fluid className="d-flex align-items-center justify-content-center vh-100 login-container">
         <Row className="w-100">
           <Col md={{ span: 4, offset: 4 }}>
