@@ -123,7 +123,7 @@ const Rezepturen: React.FC = () => {
       renderCell: (params) => (
         <Button variant="contained" color="secondary" onClick={() => handleRemoveMaterial(params.id)}>
           Remove
-        </Button>
+        </Button> //TODO add removehandler correct
       ),
     },
   ];
