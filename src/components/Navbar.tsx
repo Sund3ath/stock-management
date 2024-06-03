@@ -30,7 +30,7 @@ const NavigationBar: React.FC = () => {
   const [langAnchorEl, setLangAnchorEl] = useState<null | HTMLElement>(null);
   const [currentFlag, setCurrentFlag] = useState(enFlag);
   const navigate = useNavigate();
-  const { user, token, logout } = useAuth();
+  const { user, logout } = useAuth();
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -72,11 +72,9 @@ const NavigationBar: React.FC = () => {
     <>
       <StyledAppBar position="static">
         <Toolbar>
-          {token && (
-            <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleSidebar}>
-              <MenuIcon />
-            </IconButton>
-          )}
+          <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleSidebar}>
+            <MenuIcon />
+          </IconButton>
           <Typography variant="h6" style={{ flexGrow: 1 }}>
             E&K Stock Genie
           </Typography>
@@ -103,32 +101,34 @@ const NavigationBar: React.FC = () => {
               Türkçe
             </MenuItem>
           </Menu>
-          {token && (
-            <IconButton color="inherit" onClick={handleMenuOpen}>
-              <Avatar alt="Profile Picture" src="/path/to/profile-picture.jpg" />
-            </IconButton>
+          {user && (
+            <>
+              <IconButton color="inherit" onClick={handleMenuOpen}>
+                <Avatar alt="Profile Picture" src="/path/to/profile-picture.jpg" />
+              </IconButton>
+              <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
+                <MenuItem>
+                  <Typography variant="subtitle1">{user?.email}</Typography>
+                </MenuItem>
+                <Divider />
+                <MenuItem onClick={() => { handleMenuClose(); navigate('/settings'); }}>
+                  <ListItemIcon>
+                    <Settings fontSize="small" />
+                  </ListItemIcon>
+                  {t('navbar.settings')}
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>
+                  <ListItemIcon>
+                    <Logout fontSize="small" style={{ color: 'red' }} />
+                  </ListItemIcon>
+                  <Typography style={{ color: 'red' }}>{t('navbar.logout')}</Typography>
+                </MenuItem>
+              </Menu>
+            </>
           )}
-          <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
-            <MenuItem>
-              <Typography variant="subtitle1">{user?.email}</Typography>
-            </MenuItem>
-            <Divider />
-            <MenuItem onClick={() => { handleMenuClose(); navigate('/settings'); }}>
-              <ListItemIcon>
-                <Settings fontSize="small" />
-              </ListItemIcon>
-              {t('navbar.settings')}
-            </MenuItem>
-            <MenuItem onClick={handleLogout}>
-              <ListItemIcon>
-                <Logout fontSize="small" style={{ color: 'red' }} />
-              </ListItemIcon>
-              <Typography style={{ color: 'red' }}>{t('navbar.logout')}</Typography>
-            </MenuItem>
-          </Menu>
         </Toolbar>
       </StyledAppBar>
-      {token && <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />}
+      <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
     </>
   );
 };

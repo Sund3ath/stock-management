@@ -16,3 +16,39 @@ export const CREATE_USER = gql`
     }
   }
 `;
+
+export const ADD_PRODUCT = gql`
+mutation Mutation($createProductInput: CreateProductInput!) {
+  createProduct(createProductInput: $createProductInput) {
+    id
+    name
+  }
+}
+`;
+
+export const UPDATE_PRODUCT_MATERIALS = gql`
+mutation Mutation($updateRecipeInput: UpsertRecipeInput!) {
+  upsertRecipe(updateRecipeInput: $updateRecipeInput) {
+    id
+  }
+}
+
+
+`;
+
+export const ADD_RECIPE_MATERIAL = gql`
+mutation Mutation($updateRecipeInput: UpsertRecipeInput!) {
+  upsertRecipe(updateRecipeInput: $updateRecipeInput) {
+    id
+  }
+}
+`;
+
+export const REMOVE_RECIPE_MATERIAL = gql`
+mutation Mutation($deleteRecipeInput: DeleteRecipeInput!) {
+  removeRecipe(deleteRecipeInput: $deleteRecipeInput) {
+    id
+  }
+}
+`;
+

@@ -8,6 +8,7 @@ import NavigationBar from './components/Navbar';
 import Footer from './components/Footer';
 import { useAuth } from './context/AuthContext';
 import { Container } from 'react-bootstrap';
+import Rezepturen from './main-pages/Receipts';
 
 const PrivateRoute: React.FC = () => {
   const { token } = useAuth();
@@ -24,6 +25,7 @@ const App: React.FC = () => {
           <Route path="/register" element={<Register />} />
           <Route element={<PrivateRoute />}>
             <Route path="/home" element={<Home />} />
+            <Route path="/rezepturen" element={<Rezepturen />} />
           </Route>
         </Routes>
       </Container>

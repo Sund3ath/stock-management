@@ -1,26 +1,40 @@
 {
-    "login": {
-      "title": "Login",
-      "email": "Email",
-      "password": "Password",
-      "loginButton": "Login",
-      "registerLink": "Don't have an account? Register"
-    },
-    "register": {
-      "title": "Register",
-      "email": "Email",
-      "password": "Password",
-      "confirmPassword": "Confirm Password",
-      "registerButton": "Register",
-      "loginLink": "Already have an account? Login"
-    },
-    "navbar": {
-      "home": "Home",
-      "signedInAs": "Signed in as",
-      "settings": "Settings",
-      "logout": "Logout"
-    },
-    "footer": {
-      "text": "© 2023 E&K Stock Genie. All rights reserved."
-    }
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Login",
+    "registerLink": "Don't have an account? Register"
+  },
+  "register": {
+    "title": "Register",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "registerButton": "Register",
+    "loginLink": "Already have an account? Login"
+  },
+  "navbar": {
+    "home": "Home",
+    "signedInAs": "Signed in as",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "footer": {
+    "text": "© 2023 E&K Stock Genie. All rights reserved."
+  },
+  "rezepturen": {
+    "title": "Recipe Management",
+    "welcome": "",
+    "recipeName": "Recipe Name",
+    "materialName": "Material Name",
+    "quantity": "Quantity",
+    "selectProduct": "Select Product",
+    "addProduct": "Add Produkt",
+    "addMaterial": "Add Material",
+    "saveRecipe": "Save Recipe",
+    "error": "Error adding recipe",
+    "success": "Recipe added successfully",
+    "enterDetails": "Please enter a recipe name and add at least one material."
   }
+}

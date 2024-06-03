@@ -45,6 +45,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
           <ListItemStyled button onClick={() => { navigate('/settings'); toggleSidebar(); }}>
             <ListItemText primary="Settings" />
           </ListItemStyled>
+          <ListItemStyled button onClick={() => { navigate('/rezepturen'); toggleSidebar(); }}>
+            <ListItemText primary="Rezepturen" />
+          </ListItemStyled>
         </List>
       </DrawerPaper>
     </Drawer>

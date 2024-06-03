@@ -22,5 +22,19 @@
     },
     "footer": {
       "text": "© 2023 E&K Stock Genie. Tüm hakları saklıdır."
+    },
+    "rezepturen": {
+      "title": "Tarifler Yönetimi",
+      "welcome": "",
+      "recipeName": "Tarif Adı",
+      "materialName": "Malzeme Adı",
+      "quantity": "Miktar",
+      "selectProduct": "Ürün Sec",
+      "addProduct": "Ürün Ekle",
+      "addMaterial": "Malzeme Ekle",
+      "saveRecipe": "Tarifi Kaydet",
+      "error": "Tarif eklenirken hata oluştu",
+      "success": "Tarif başarıyla eklendi",
+      "enterDetails": "Lütfen bir tarif adı girin ve en az bir malzeme ekleyin."
     }
   }

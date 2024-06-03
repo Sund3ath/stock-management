@@ -22,5 +22,19 @@
     },
     "footer": {
       "text": "© 2023 E&K Stock Genie. Alle Rechte vorbehalten."
+    },
+    "rezepturen": {
+      "title": "Rezepturen Verwaltung",
+      "welcome": "",
+      "recipeName": "Rezeptname",
+      "materialName": "Materialname",
+      "quantity": "Menge",
+      "selectProduct": "Produkt auswählen",
+      "addProduct": "Produkt hinzufügen",
+      "addMaterial": "Material hinzufügen",
+      "saveRecipe": "Rezept speichern",
+      "error": "Fehler beim Hinzufügen des Rezepts",
+      "success": "Rezept erfolgreich hinzugefügt",
+      "enterDetails": "Bitte geben Sie einen Rezeptnamen ein und fügen Sie mindestens ein Material hinzu."
     }
   }

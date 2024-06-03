@@ -18,3 +18,35 @@ export const GET_USER = gql`
     }
   }
 `;
+
+export const GET_PRODUCTS = gql`
+query Query {
+    products {
+      id
+      name
+    }
+  }
+  
+`;
+
+export const GET_PRODUCT_MATERIALS = gql`
+query Query($filterRecipeArgs: FilterRecipeArgs!) {
+    recipes(filterRecipeArgs: $filterRecipeArgs) {
+      material {
+        id
+        name
+      }
+      quantity
+      unit
+    }
+  }
+`;
+
+export const GET_MATERIALS = gql`
+query Query {
+    materials {
+      id
+      name
+    }
+  }
+`;
