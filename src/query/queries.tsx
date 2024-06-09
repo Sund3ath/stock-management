@@ -50,3 +50,43 @@ query Query {
     }
   }
 `;
+
+export const GET_COMPANIES = gql`
+query Query {
+  companies {
+    id
+    name
+    restaurants {
+      id
+      name
+    }
+    vatNumber
+    warehouses {
+      id
+      name
+    }
+  }
+}
+
+`;
+
+export const GET_RESTAURANTS = gql`
+  query GetRestaurants {
+    restaurants {
+      id
+      name
+      companyId
+    }
+  }
+`;
+
+export const GET_WAREHOUSES = gql`
+  query GetWarehouses {
+    warehouses {
+      id
+      name
+      companyId
+    }
+  }
+`;
+

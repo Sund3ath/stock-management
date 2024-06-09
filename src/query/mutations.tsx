@@ -52,3 +52,32 @@ mutation Mutation($deleteRecipeInput: DeleteRecipeInput!) {
 }
 `;
 
+
+export const ADD_COMPANY = gql`
+  mutation AddCompany($name: String!) {
+    addCompany(name: $name) {
+      id
+      name
+    }
+  }
+`;
+
+export const ADD_RESTAURANT = gql`
+  mutation AddRestaurant($name: String!, $companyId: ID!) {
+    addRestaurant(name: $name, companyId: $companyId) {
+      id
+      name
+      companyId
+    }
+  }
+`;
+
+export const ADD_WAREHOUSE = gql`
+  mutation AddWarehouse($name: String!, $companyId: ID!) {
+    addWarehouse(name: $name, companyId: $companyId) {
+      id
+      name
+      companyId
+    }
+  }
+`;
